@@ -49,16 +49,12 @@ def update(path, p_dialog, i, t, serie, overwrite):
                     if int(overwrite) == 3:
                         # Sobrescribir todos los archivos (tvshow.nfo, 1x01.nfo, 1x01 [canal].json, 1x01.strm, etc...)
                         insertados, sobreescritos, fallidos = videolibrarytools.save_tvshow(serie, itemlist)
-                        serie= videolibrary.check_season_playcount(serie, serie.contentSeason)
-                        if filetools.write(path + '/tvshow.nfo', head_nfo + it.tojson()):
-                            serie.infoLabels['playcount'] = serie.playcount
+                       
                     else:
                         insertados, sobreescritos, fallidos = videolibrarytools.save_episodes(path, itemlist, serie,
                                                                                               silent=True,
                                                                                               overwrite=overwrite)
-                        it = videolibrary.check_season_playcount(it, it.contentSeason)
-                        if filetools.write(path + '/tvshow.nfo', head_nfo + it.tojson()):
-                            serie.infoLabels['playcount'] = serie.playcount
+                      
                     insertados_total += insertados
 
                 except Exception, ex:
